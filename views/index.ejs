@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Mailer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+      .primary {
+        color: #1EAEDB;
+      }
+      .danger {
+        color: red;
+      }
+      code {
+        display: inline !important;
+        padding: 2px !important;
+      }
+      pre {
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Welcome to mailer</h1>
+      <% if (successMsg) { %>
+        <p class="primary"><%= successMsg %></p>
+      <% } %>
+
+      <% if (errorMsg) { %>
+        <p class="danger"><%= errorMsg %></p>
+      <% } %>
+
+      <pre>
+        <b>BEFORE YOU START</b>
+          1. Generate app password:
+            - Click on your google account avatar, select <code>Manage google account</code>
+            - Select <code>Security</code> tab
+            - Under section <code>Signing in to Google</code>, select <code>App passwords</code>
+            - Generate new password and copy it to the clipboard
+          2. Apply credential into the app:
+            - Create .env from .env.example
+            - Add your email as <code>EMAIL</code> and your generated password as <code>PASSWORD</code>
+      </pre>
+
+      <form action="/send-mail" method="POST" enctype="multipart/form-data">
+        <div class="row">
+          <label for="from">From</label>
+          <input
+            class="u-full-width"
+            type="email"
+            placeholder="sender@mailbox.com"
+            id="from"
+            name="from"
+          />
+        </div>
+    
+        <div class="row">
+          <label for="to">To</label>
+          <input
+            class="u-full-width"
+            type="email"
+            placeholder="receiver@mailbox.com"
+            id="to"
+            name="to"
+          />
+        </div>
+
+        <label for="subject">Subject</label>
+        <input
+          type="text"
+          class="u-full-width"
+          placeholder="This email is about..."
+          id="subject"
+          name="subject"
+        />
+
+        <label for="subject">Template</label>
+        <input
+          type="file"
+          class="u-full-width"
+          placeholder="Upload your email template file"
+          id="template"
+          required
+          name="template"
+          size="5000"
+        />
+
+        <input class="button-primary" type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>
