@@ -30,11 +30,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/send-mail', (req, res) => {
-  const { from, to, subject } = req.body
+  const {  to, subject } = req.body
   const { template } = req.files
 
   sendMail({
-    from,
     to: to || process.env.EMAIL,
     subject,
     html: template.data,

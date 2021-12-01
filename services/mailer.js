@@ -14,8 +14,9 @@ const transporter = mailer.createTransport({
   },
 })
 
-let defaultMailOptions = {
+const defaultMailOptions = {
   to: process.env.EMAIL,
+  from: process.env.EMAIL,
 }
 
 module.exports = {
